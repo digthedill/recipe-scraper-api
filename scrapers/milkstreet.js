@@ -25,16 +25,21 @@ const scrapeMilkStreet = async (url, uid) => {
   ).attr("src")}`;
 
   recipe.ingredients = [];
-  $("li.ingredient").each((i, el) => {
-    const quantity = $(el).find(".ingredient__quantity").text();
-    const item = $(el).find(".ingredient__label").text();
-    recipe.ingredients.push(`${quantity} ${item}`);
-  });
+  $("div.ingredients-list")
+    .children(".ingredient")
+    .each((i, el) => {
+      const quantity = $(el).find(".ingredient__quantity").text();
+      const item = $(el).find(".ingredient__label").text();
+      recipe.ingredients.push(`${quantity} ${item}`);
+    });
+
   recipe.steps = [];
-  $("ol.recipe__directions__list").each((i, el) => {
-    const item = $(el).text();
-    recipe.steps.push(item);
-  });
+  $("ol.recipe__directions__list")
+    .children()
+    .each((i, el) => {
+      const item = $(el).text().replace(/\s\s+/g, " ");
+      recipe.steps.push(item);
+    });
 
   if (!recipe.image) {
     recipe.image = stockPhoto;

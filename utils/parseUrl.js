@@ -10,6 +10,7 @@ const delish = require("../scrapers/delish");
 const epicurious = require("../scrapers/epicurious");
 const kate = require("../scrapers/katescarlata");
 const theKitchn = require("../scrapers/kitchn");
+const foodAndWine = require("../scrapers/foodandwine");
 
 const parseUrltoScraper = (url, uid) => {
   if (url.includes("nytimes")) {
@@ -32,6 +33,8 @@ const parseUrltoScraper = (url, uid) => {
     epicurious(url, uid);
   } else if (url.includes("katescarlata")) {
     kate(url, uid);
+  } else if (url.includes("foodandwine")) {
+    foodAndWine(url, uid);
   } else if (url.includes("thekitchn")) {
     theKitchn(url, uid);
   } else {

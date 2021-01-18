@@ -1,4 +1,5 @@
 const firebase = require("firebase");
+require("dotenv").config();
 // Required for side-effects
 require("firebase/firestore");
 
