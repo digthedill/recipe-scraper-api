@@ -4,7 +4,7 @@ const allRecipe = require("../scrapers/allrecipes");
 const foodNetwork = require("../scrapers/foodnetwork");
 const wordpress = require("../scrapers/wordpress");
 const goop = require("../scrapers/goop");
-const milkStreet = require("../scrapers/milkstreet");
+// const milkStreet = require("../scrapers/milkstreet");
 const seriousEats = require("../scrapers/seriousEats");
 const delish = require("../scrapers/delish");
 const epicurious = require("../scrapers/epicurious");
@@ -23,8 +23,6 @@ const parseUrltoScraper = (url, uid) => {
     foodNetwork(url, uid);
   } else if (url.includes("goop")) {
     goop(url, uid);
-  } else if (url.includes("177milkstreet")) {
-    milkStreet(url, uid);
   } else if (url.includes("seriouseats")) {
     seriousEats(url, uid);
   } else if (url.includes("delish")) {
