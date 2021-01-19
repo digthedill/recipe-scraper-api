@@ -19,8 +19,8 @@ const scrapeWordpress = async (url, uid) => {
   let recipe = new Object();
   const $ = cheerio.load(html);
 
-  recipe.title = $(".wprm-recipe-name").text();
-  recipe.description = $("div.wprm-recipe-summary span").text().trim();
+  recipe.title = $("meta[property='og:title']").attr("content");
+  recipe.description = $("meta[property='og:description']").attr("content");
 
   //setup some logic that either generates a food photo OR only accept url photos AND prevent thumbnails
   recipe.image = $("meta[property='og:image']").attr("content");
