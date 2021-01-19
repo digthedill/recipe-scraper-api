@@ -18,18 +18,13 @@ const scrapeBonAppetit = async (url, uid) => {
   let recipe = new Object();
   const $ = cheerio.load(html);
 
-  $("article.recipe").each((i, elem) => {
-    // potentially prevent content with video tags
-    recipe = {
-      title: $(elem).find("h1.split-screen-content-header__hed").text().trim(),
-      image: $(elem).find("img.responsive-image__image").attr("src"),
-      description: $(elem).find(".container--body-inner").text(),
-      steps: $(elem).find(".recipe__instruction-list").text(), //not working
-      uid: uid,
-      srcUrl: url,
-    };
-  });
+  recipe.title = $("h1.split-screen-content-header__hed").text().trim();
+  recipe.image = $("img.responsive-image__image").attr("src");
+  recipe.description = $(".container--body-inner").text();
+  recipe.uid = uid;
+  recipe.srcUrl = url;
   recipe.ingredients = [];
+  recipe.steps = [];
   const container = $('div[data-testid="IngredientList"]');
   const ingredientsContainer = container.children("div");
   const units = ingredientsContainer.children("p");
