@@ -18,8 +18,8 @@ const scrapeBonAppetit = async (url, uid) => {
   let recipe = new Object();
   const $ = cheerio.load(html);
 
-  recipe.title = $("h1.split-screen-content-header__hed").text().trim();
-  recipe.image = $("img.responsive-image__image").attr("src");
+  recipe.title = $("meta[property='og:title']").attr("content");
+  recipe.image = $("meta[property='og:image']").attr("content");
   recipe.description = $(".container--body-inner").text();
   recipe.uid = uid;
   recipe.srcUrl = url;
