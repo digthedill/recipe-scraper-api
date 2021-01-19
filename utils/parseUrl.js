@@ -36,7 +36,6 @@ const parseUrltoScraper = (url, uid) => {
   } else if (url.includes("thekitchn")) {
     theKitchn(url, uid);
   } else {
-    //can I parse the url?? or could I setup a cheerio scrape in the meta data
     wordpress(url, uid);
   }
 };

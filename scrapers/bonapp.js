@@ -39,15 +39,15 @@ const scrapeBonAppetit = async (url, uid) => {
     recipe.ingredients.push(`${$(el).text()} ${$(ingredients[i]).text()}`);
   });
 
+  const instructionContainer = $('div[data-testid="InstructionsWrapper"]');
+
+  instructionContainer.find("p").each((i, el) => {
+    recipe.steps.push($(el).text());
+  });
+
   if (!recipe.image) {
     recipe.image = stockPhoto;
   }
-
-  const arrayOfSteps = recipe.steps
-    .split("Step ")
-    .map((val) => val.substring(1));
-  arrayOfSteps.shift();
-  recipe.steps = arrayOfSteps;
 
   db.collection("recipes")
     .add(recipe)
