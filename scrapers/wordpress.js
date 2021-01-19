@@ -23,7 +23,7 @@ const scrapeWordpress = async (url, uid) => {
   recipe.description = $("div.wprm-recipe-summary span").text().trim();
 
   //setup some logic that either generates a food photo OR only accept url photos AND prevent thumbnails
-  recipe.image = $("div.wprm-recipe-image img").attr("src");
+  recipe.image = $("meta[property='og:image']").attr("content");
   recipe.ingredients = [];
   recipe.steps = "";
   recipe.uid = uid;
